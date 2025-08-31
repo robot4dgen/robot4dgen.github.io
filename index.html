@@ -35,11 +35,11 @@
             transition: border-color 0.2s ease;
             margin-bottom: 1em;
         }
-        
+
         .video-compare-container:hover {
             border-color: #555;
         }
-        
+
         .video-canvas {
             position: absolute;
             top: 0;
@@ -47,17 +47,17 @@
             height: 100%;
             object-fit: cover;
         }
-        
+
         .rgb-video {
             left: 0;
             clip-path: inset(0 50% 0 0);
         }
-        
+
         .depth-video {
             right: 0;
             clip-path: inset(0 0 0 50%);
         }
-        
+
         .divider {
             position: absolute;
             top: 0;
@@ -68,9 +68,9 @@
             cursor: col-resize;
             z-index: 10;
             transform: translateX(-2px);
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
-        
+
         .divider::before {
             content: '';
             position: absolute;
@@ -81,9 +81,9 @@
             background: #fff;
             border-radius: 50%;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
-        
+
         .divider::after {
             content: '⟷';
             position: absolute;
@@ -94,7 +94,7 @@
             color: #000;
             font-weight: bold;
         }
-        
+
         .labels {
             position: absolute;
             top: 10px;
@@ -103,21 +103,21 @@
             z-index: 5;
             pointer-events: none;
         }
-        
+
         .label {
             position: absolute;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.7);
             color: white;
             padding: 5px 10px;
             font-size: 14px;
             font-weight: bold;
             border-radius: 4px;
         }
-        
+
         .label-left {
             left: 10px;
         }
-        
+
         .label-right {
             right: 10px;
         }
@@ -168,13 +168,13 @@
             text-align: center;
             font-size: 14px;
         }
-        
+
         .controls {
             margin-top: 10px;
             margin-bottom: 20px;
             text-align: center;
         }
-        
+
         .controls button {
             background: #333;
             color: white;
@@ -183,11 +183,11 @@
             cursor: pointer;
             border-radius: 4px;
         }
-        
+
         .controls button:hover {
             background: #555;
         }
-        
+
         .controls button:disabled {
             background: #222;
             color: #666;
@@ -228,8 +228,8 @@
                     href="https://shuangli59.github.io/">Shuang Li<sup>1</sup></a>
                 &nbsp&nbsp <a href="https://eacousineau.com/">Eric Cousineau<sup>2</sup></a> &nbsp&nbsp <a
                     href="https://www.cs.cmu.edu/~sfeng/">Siyuan Feng<sup>2</sup></a> &nbsp&nbsp
-                <a href="https://www.tri.global/about-us/dr-ben-burchfiel">Benjamin Burchfiel<sup>2</sup></a> &nbsp&nbsp <a
-                    href="https://shurans.github.io/">Shuran Song<sup>1</sup></a> <br>
+                <a href="https://www.tri.global/about-us/dr-ben-burchfiel">Benjamin Burchfiel<sup>2</sup></a> &nbsp&nbsp
+                <a href="https://shurans.github.io/">Shuran Song<sup>1</sup></a> <br>
             </span>
             <!-- <p style="margin-top:0.25em;"> <span style="color: #8C1515">Stanford University</span> &nbsp&nbsp 
                 <span style="color: #557aa0">Columbia University</span> &nbsp&nbsp
@@ -243,7 +243,7 @@
             <div>
                 <!-- PDF Link. -->
                 <span>
-                    <a href="" class="button">
+                    <a href="https://arxiv.org/abs/2507.01099" class="button">
                         <span class="icon">
                             <i class="fa fa-file-pdf-o"></i>
                         </span>
@@ -288,7 +288,7 @@
             </div>
         </div> -->
 
-        <p style="color: black;">Understanding and predicting the dynamics of the physical world can enhance a robot's
+        <!-- <p style="color: black;">Understanding and predicting the dynamics of the physical world can enhance a robot's
             ability to plan and interact effectively in complex environments. While recent video generation models have
             shown strong potential in modeling dynamic scenes, generating videos that are both temporally coherent and
             geometrically consistent across camera views remains a significant challenge. To address this, we propose a
@@ -300,7 +300,31 @@
             across multiple simulated and real-world robotic datasets. We further show that the predicted 4D videos can
             be used to recover robot end-effector trajectories using an off-the-shelf 6DoF pose tracker, supporting
             robust robot manipulation and generalization to novel camera viewpoints.
-        </p>
+        </p> -->
+
+        <div style="text-align: center; margin: 2em 0 -1em 0;">
+            <video autoplay loop muted playsinline style="width: 80%; max-width: 800px;">
+                <source src="videos/teaser.mov" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- TLDR Section -->
+        <div class="tldr-section">
+            <div class="tldr-content">
+                We propose a 4D video generation model that enforces geometric consistency across multiple views to
+                produce spatio-temporally aligned RGB-D videos from a single RGB-D image per view. We further
+                demonstrate its utility in downstream robot manipulation tasks through pose tracking.
+            </div>
+        </div>
+
+        <!-- <div style="text-align: center; margin: 2em 0 -1em 0;">
+            <video controls autoplay loop muted playsinline style="width: 100%; max-width: 1000px;">
+                <source src="videos/real.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div> -->
+
 
         <hr>
         <h3>Method</h3>
@@ -329,17 +353,19 @@
                 <strong>Ground-truth RGB-D videos</strong>
             </div>
             <div class="video-compare-container" id="container1">
-                <video class="video-canvas rgb-video" id="rgbVideo1" loop muted preload="metadata" autoplay onloadeddata="setupVideo(1)">
+                <video class="video-canvas rgb-video" id="rgbVideo1" loop muted preload="metadata" autoplay
+                    onloadeddata="setupVideo(1)">
                     <source src="videos/task_1/gt_rgb_1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <video class="video-canvas depth-video" id="depthVideo1" loop muted preload="metadata" autoplay onloadeddata="setupVideo(1)">
+                <video class="video-canvas depth-video" id="depthVideo1" loop muted preload="metadata" autoplay
+                    onloadeddata="setupVideo(1)">
                     <source src="videos/task_1/gt_depth_1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                
+
                 <div class="divider" id="divider1"></div>
-                
+
                 <div class="labels">
                     <div class="label label-left">RGB</div>
                     <div class="label label-right">DEPTH</div>
@@ -351,7 +377,7 @@
                 <div class="video-info" id="videoInfo1">Result 1 of 2</div>
                 <button class="nav-arrow" id="nextBtn1" onclick="switchVideo1(1)">→</button>
             </div>
-            
+
             <div class="controls">
                 <button onclick="togglePlayback(1)" id="playButton1">Play</button>
             </div>
@@ -360,17 +386,19 @@
                 <strong>Generated RGB-D videos (unseen views)</strong>
             </div>
             <div class="video-compare-container" id="container2">
-                <video class="video-canvas rgb-video" id="rgbVideo2" loop muted preload="metadata" autoplay onloadeddata="setupVideo(2)">
+                <video class="video-canvas rgb-video" id="rgbVideo2" loop muted preload="metadata" autoplay
+                    onloadeddata="setupVideo(2)">
                     <source src="videos/task_1/ours/rgb_1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <video class="video-canvas depth-video" id="depthVideo2" loop muted preload="metadata" autoplay onloadeddata="setupVideo(2)">
+                <video class="video-canvas depth-video" id="depthVideo2" loop muted preload="metadata" autoplay
+                    onloadeddata="setupVideo(2)">
                     <source src="videos/task_1/ours/depth_1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                
+
                 <div class="divider" id="divider2"></div>
-                
+
                 <div class="labels">
                     <div class="label label-left">RGB</div>
                     <div class="label label-right">DEPTH</div>
@@ -382,7 +410,7 @@
                 <div class="video-info" id="videoInfo2">Result 1 of 2</div>
                 <button class="nav-arrow" id="nextBtn2" onclick="switchVideo2(1)">→</button>
             </div>
-            
+
             <div class="controls">
                 <button onclick="togglePlayback(2)" id="playButton2">Play</button>
             </div>
@@ -457,7 +485,7 @@
                             <source src="videos/task_1/dp_2.mp4" type="video/mp4">
                         </video>
                     </span>
-                    Diffusion Policy <span style="color: red";>fails to insert the cereal box</span>
+                    Diffusion Policy <span style="color: red" ;>fails to insert the cereal box</span>
                 </div>
 
                 <div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 50%">
@@ -466,7 +494,7 @@
                             <source src="videos/task_1/dp.mp4" type="video/mp4">
                         </video>
                     </span>
-                    Diffusion Policy <span style="color: red";>fails to pick up the cereal box</span>
+                    Diffusion Policy <span style="color: red" ;>fails to pick up the cereal box</span>
                 </div>
             </div>
         </div>
@@ -475,23 +503,25 @@
         A single robot arm retrieves a spatula from a utensil crock and places it on the left side of the table. This
         task requires precise manipulation to successfully grasp the narrow object.
 
- 
+
         <div class="box alt" style="margin-top:1em; margin-bottom: 1em;">
             <div style="text-align: center; margin-bottom: 15px;">
                 <strong>Ground-truth RGB-D videos</strong>
             </div>
             <div class="video-compare-container" id="container3">
-                <video class="video-canvas rgb-video" id="rgbVideo3" loop muted preload="metadata" autoplay onloadeddata="setupVideo(3)">
+                <video class="video-canvas rgb-video" id="rgbVideo3" loop muted preload="metadata" autoplay
+                    onloadeddata="setupVideo(3)">
                     <source src="videos/task_2/gt_rgb_1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <video class="video-canvas depth-video" id="depthVideo3" loop muted preload="metadata" autoplay onloadeddata="setupVideo(3)">
+                <video class="video-canvas depth-video" id="depthVideo3" loop muted preload="metadata" autoplay
+                    onloadeddata="setupVideo(3)">
                     <source src="videos/task_2/gt_depth_1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                
+
                 <div class="divider" id="divider3"></div>
-                
+
                 <div class="labels">
                     <div class="label label-left">RGB</div>
                     <div class="label label-right">DEPTH</div>
@@ -503,7 +533,7 @@
                 <div class="video-info" id="videoInfo3">Result 1 of 2</div>
                 <button class="nav-arrow" id="nextBtn3" onclick="switchVideo3(1)">→</button>
             </div>
-            
+
             <div class="controls">
                 <button onclick="togglePlayback(3)" id="playButton3">Play</button>
             </div>
@@ -512,17 +542,19 @@
                 <strong>Generated RGB-D videos (unseen views)</strong>
             </div>
             <div class="video-compare-container" id="container4">
-                <video class="video-canvas rgb-video" id="rgbVideo4" loop muted preload="metadata" autoplay onloadeddata="setupVideo(4)">
+                <video class="video-canvas rgb-video" id="rgbVideo4" loop muted preload="metadata" autoplay
+                    onloadeddata="setupVideo(4)">
                     <source src="videos/task_2/ours/rgb_1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <video class="video-canvas depth-video" id="depthVideo4" loop muted preload="metadata" autoplay onloadeddata="setupVideo(4)">
+                <video class="video-canvas depth-video" id="depthVideo4" loop muted preload="metadata" autoplay
+                    onloadeddata="setupVideo(4)">
                     <source src="videos/task_2/ours/depth_1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                
+
                 <div class="divider" id="divider4"></div>
-                
+
                 <div class="labels">
                     <div class="label label-left">RGB</div>
                     <div class="label label-right">DEPTH</div>
@@ -534,7 +566,7 @@
                 <div class="video-info" id="videoInfo4">Result 1 of 2</div>
                 <button class="nav-arrow" id="nextBtn4" onclick="switchVideo4(1)">→</button>
             </div>
-            
+
             <div class="controls">
                 <button onclick="togglePlayback(4)" id="playButton4">Play</button>
             </div>
@@ -593,14 +625,14 @@
                         </span>
                         OURS
                     </div>
-    
+
                     <div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 50%">
                         <span class="image fit" style="margin-bottom: 0.5em;">
                             <video controls autoplay loop muted playsinline style="width: 100%; margin-right: 5%;">
                                 <source src="videos/task_2/dp.mp4" type="video/mp4">
                             </video>
                         </span>
-                        Diffusion Policy <span style="color: red";>fails to grasp the spatula</span>
+                        Diffusion Policy <span style="color: red" ;>fails to grasp the spatula</span>
                     </div>
                 </div>
             </div>
@@ -612,23 +644,25 @@
                 <strong>Generated RGB-D videos</strong>
             </div>
             <div class="video-compare-container" id="container7">
-                <video class="video-canvas rgb-video" id="rgbVideo7" loop muted preload="metadata" autoplay onloadeddata="setupVideo(7)">
+                <video class="video-canvas rgb-video" id="rgbVideo7" loop muted preload="metadata" autoplay
+                    onloadeddata="setupVideo(7)">
                     <source src="videos/task_2/real/rgb.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <video class="video-canvas depth-video" id="depthVideo7" loop muted preload="metadata" autoplay onloadeddata="setupVideo(7)">
+                <video class="video-canvas depth-video" id="depthVideo7" loop muted preload="metadata" autoplay
+                    onloadeddata="setupVideo(7)">
                     <source src="videos/task_2/real/depth.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                
+
                 <div class="divider" id="divider7"></div>
-                
+
                 <div class="labels">
                     <div class="label label-left">RGB</div>
                     <div class="label label-right">DEPTH</div>
                 </div>
             </div>
-            
+
             <div class="controls">
                 <button onclick="togglePlayback(7)" id="playButton7">Play</button>
             </div>
@@ -645,17 +679,19 @@
                 <strong>Ground-truth RGB-D videos</strong>
             </div>
             <div class="video-compare-container" id="container5">
-                <video class="video-canvas rgb-video" id="rgbVideo5" loop muted preload="metadata" autoplay onloadeddata="setupVideo(5)">
+                <video class="video-canvas rgb-video" id="rgbVideo5" loop muted preload="metadata" autoplay
+                    onloadeddata="setupVideo(5)">
                     <source src="videos/task_3/gt_rgb_1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <video class="video-canvas depth-video" id="depthVideo5" loop muted preload="metadata" autoplay onloadeddata="setupVideo(5)">
+                <video class="video-canvas depth-video" id="depthVideo5" loop muted preload="metadata" autoplay
+                    onloadeddata="setupVideo(5)">
                     <source src="videos/task_3/gt_depth_1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                
+
                 <div class="divider" id="divider5"></div>
-                
+
                 <div class="labels">
                     <div class="label label-left">RGB</div>
                     <div class="label label-right">DEPTH</div>
@@ -667,7 +703,7 @@
                 <div class="video-info" id="videoInfo5">GT 1 of 2</div>
                 <button class="nav-arrow" id="nextBtn5" onclick="switchVideo5(1)">→</button>
             </div>
-            
+
             <div class="controls">
                 <button onclick="togglePlayback(5)" id="playButton5">Play</button>
             </div>
@@ -676,17 +712,19 @@
                 <strong>Generated RGB-D videos (unseen views)</strong>
             </div>
             <div class="video-compare-container" id="container6">
-                <video class="video-canvas rgb-video" id="rgbVideo6" loop muted preload="metadata" autoplay onloadeddata="setupVideo(6)">
+                <video class="video-canvas rgb-video" id="rgbVideo6" loop muted preload="metadata" autoplay
+                    onloadeddata="setupVideo(6)">
                     <source src="videos/task_3/ours/rgb_1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <video class="video-canvas depth-video" id="depthVideo6" loop muted preload="metadata" autoplay onloadeddata="setupVideo(6)">
+                <video class="video-canvas depth-video" id="depthVideo6" loop muted preload="metadata" autoplay
+                    onloadeddata="setupVideo(6)">
                     <source src="videos/task_3/ours/depth_1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                
+
                 <div class="divider" id="divider6"></div>
-                
+
                 <div class="labels">
                     <div class="label label-left">RGB</div>
                     <div class="label label-right">DEPTH</div>
@@ -698,7 +736,7 @@
                 <div class="video-info" id="videoInfo6">Result 1 of 2</div>
                 <button class="nav-arrow" id="nextBtn6" onclick="switchVideo6(1)">→</button>
             </div>
-            
+
             <div class="controls">
                 <button onclick="togglePlayback(6)" id="playButton6">Play</button>
             </div>
@@ -757,14 +795,14 @@
                         </span>
                         OURS
                     </div>
-    
+
                     <div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 50%">
                         <span class="image fit" style="margin-bottom: 0.5em;">
                             <video controls autoplay loop muted playsinline style="width: 100%; margin-right: 5%;">
                                 <source src="videos/task_3/dp.mp4" type="video/mp4">
                             </video>
                         </span>
-                        Diffusion Policy <span style="color: red";>fails to pick up the apple</span>
+                        Diffusion Policy <span style="color: red" ;>fails to pick up the apple</span>
                     </div>
                 </div>
             </div>
@@ -787,7 +825,7 @@
     <script>
         // Store multiple video comparison instances
         const videoComparisons = {};
-        
+
         // Video sets for all tasks
         const videoSets = {
             task1_gt: [
@@ -863,7 +901,7 @@
                 }
             ]
         };
-        
+
         // Track current video index for each container
         const currentVideoIndexes = {
             1: 0, // task1_gt
@@ -873,7 +911,7 @@
             5: 0, // task3_gt
             6: 0  // task3_ours
         };
-        
+
         // Map container IDs to video sets
         const containerToVideoSet = {
             1: 'task1_gt',
@@ -883,7 +921,7 @@
             5: 'task3_gt',
             6: 'task3_ours'
         };
-        
+
         function setupVideo(instanceId) {
             if (!videoComparisons[instanceId]) {
                 videoComparisons[instanceId] = {
@@ -896,9 +934,9 @@
                     depthVideo: null
                 };
             }
-            
+
             videoComparisons[instanceId].videosLoaded++;
-            
+
             if (videoComparisons[instanceId].videosLoaded === 2) {
                 initializeDemo(instanceId);
             }
@@ -906,7 +944,7 @@
 
         function initializeDemo(instanceId) {
             const instance = videoComparisons[instanceId];
-            
+
             instance.container = document.getElementById(`container${instanceId}`);
             instance.divider = document.getElementById(`divider${instanceId}`);
             instance.rgbVideo = document.getElementById(`rgbVideo${instanceId}`);
@@ -948,7 +986,7 @@
 
             setupDragHandlers(instanceId);
             updatePlayButton(instanceId);
-            
+
             // Initialize navigation for containers with navigation
             if (containerToVideoSet[instanceId]) {
                 updateNavigation(instanceId);
@@ -957,13 +995,13 @@
 
         function setupDragHandlers(instanceId) {
             const instance = videoComparisons[instanceId];
-            
+
             // Mouse events for divider
             instance.divider.addEventListener('mousedown', (e) => startDrag(e, instanceId));
-            
+
             // Mouse events for container (auto-follow)
             instance.container.addEventListener('mousemove', (e) => handleMouseMoveForInstance(e, instanceId));
-            
+
             // Touch events for mobile
             instance.divider.addEventListener('touchstart', (e) => startDrag(e, instanceId));
         }
@@ -974,12 +1012,12 @@
             instance.autoFollow = false;
             e.preventDefault();
             instance.container.style.cursor = 'col-resize';
-            
+
             // Add global event listeners for this specific instance
             const handleMouseMove = (e) => handleMouseMoveForInstance(e, instanceId);
             const handleTouchMove = (e) => handleTouchMoveForInstance(e, instanceId);
             const endDrag = () => endDragForInstance(instanceId, handleMouseMove, handleTouchMove, endDrag);
-            
+
             document.addEventListener('mousemove', handleMouseMove);
             document.addEventListener('mouseup', endDrag);
             document.addEventListener('touchmove', handleTouchMove);
@@ -989,11 +1027,11 @@
         function handleMouseMoveForInstance(e, instanceId) {
             const instance = videoComparisons[instanceId];
             if (!instance.isDragging && !instance.autoFollow) return;
-            
+
             const rect = instance.container.getBoundingClientRect();
-            const isOverContainer = e.clientX >= rect.left && e.clientX <= rect.right && 
-                                  e.clientY >= rect.top && e.clientY <= rect.bottom;
-            
+            const isOverContainer = e.clientX >= rect.left && e.clientX <= rect.right &&
+                e.clientY >= rect.top && e.clientY <= rect.bottom;
+
             if (isOverContainer || instance.isDragging) {
                 const x = e.clientX - rect.left;
                 const percentage = (x / rect.width) * 100;
@@ -1019,13 +1057,13 @@
             if (instance.isDragging) {
                 instance.isDragging = false;
                 instance.container.style.cursor = 'col-resize';
-                
+
                 // Remove event listeners
                 document.removeEventListener('mousemove', handleMouseMove);
                 document.removeEventListener('mouseup', endDrag);
                 document.removeEventListener('touchmove', handleTouchMove);
                 document.removeEventListener('touchend', endDrag);
-                
+
                 setTimeout(() => {
                     instance.autoFollow = true;
                 }, 2000); // Re-enable auto-follow after 2 seconds
@@ -1035,14 +1073,14 @@
         function updateDividerPosition(instanceId, percentage) {
             const instance = videoComparisons[instanceId];
             if (!instance.divider || !instance.rgbVideo || !instance.depthVideo) return;
-            
+
             // Move the divider
             instance.divider.style.left = percentage + '%';
-            
+
             // Update clip paths for split effect
             const leftClip = `inset(0 ${100 - percentage}% 0 0)`;
             const rightClip = `inset(0 0 0 ${percentage}%)`;
-            
+
             instance.rgbVideo.style.clipPath = leftClip;
             instance.depthVideo.style.clipPath = rightClip;
         }
@@ -1052,7 +1090,7 @@
             if (!instance || !instance.rgbVideo || !instance.depthVideo) {
                 return;
             }
-            
+
             if (instance.rgbVideo.paused) {
                 instance.rgbVideo.play().catch(e => console.error(`Play failed for instance ${instanceId}:`, e));
             } else {
@@ -1063,12 +1101,12 @@
         function updatePlayButton(instanceId) {
             const button = document.getElementById(`playButton${instanceId}`);
             const instance = videoComparisons[instanceId];
-            
+
             if (!button || !instance || !instance.rgbVideo) {
                 if (button) button.textContent = 'Play';
                 return;
             }
-            
+
             button.textContent = instance.rgbVideo.paused ? 'Play' : 'Pause';
         }
 
@@ -1076,42 +1114,42 @@
         function switchVideo(containerId, direction) {
             const videoSetKey = containerToVideoSet[containerId];
             if (!videoSetKey || !videoSets[videoSetKey]) return;
-            
+
             const currentIndex = currentVideoIndexes[containerId];
             const newIndex = currentIndex + direction;
-            
+
             if (newIndex < 0 || newIndex >= videoSets[videoSetKey].length) {
                 return;
             }
-            
+
             currentVideoIndexes[containerId] = newIndex;
-            
+
             const rgbVideo = document.getElementById(`rgbVideo${containerId}`);
             const depthVideo = document.getElementById(`depthVideo${containerId}`);
-            
+
             if (!rgbVideo || !depthVideo) {
                 console.error(`Video elements not found for container ${containerId}`);
                 return;
             }
-            
+
             // Pause current videos
             rgbVideo.pause();
             depthVideo.pause();
-            
+
             // Update video sources
             rgbVideo.src = videoSets[videoSetKey][newIndex].rgb;
             depthVideo.src = videoSets[videoSetKey][newIndex].depth;
-            
+
             // Restart videos
             rgbVideo.load();
             depthVideo.load();
-            
+
             // Update navigation display
             updateNavigation(containerId);
-            
+
             // Reset divider position to center
             updateDividerPosition(containerId, 50);
-            
+
             // Update play button state
             updatePlayButton(containerId);
         }
@@ -1119,20 +1157,20 @@
         function updateNavigation(containerId) {
             const videoSetKey = containerToVideoSet[containerId];
             if (!videoSetKey || !videoSets[videoSetKey]) return;
-            
+
             const currentIndex = currentVideoIndexes[containerId];
             const videoInfo = document.getElementById(`videoInfo${containerId}`);
             const prevBtn = document.getElementById(`prevBtn${containerId}`);
             const nextBtn = document.getElementById(`nextBtn${containerId}`);
-            
+
             if (videoInfo) {
                 videoInfo.textContent = `${videoSets[videoSetKey][currentIndex].title} (${currentIndex + 1} of ${videoSets[videoSetKey].length})`;
             }
-            
+
             if (prevBtn) {
                 prevBtn.disabled = currentIndex === 0;
             }
-            
+
             if (nextBtn) {
                 nextBtn.disabled = currentIndex === videoSets[videoSetKey].length - 1;
             }
