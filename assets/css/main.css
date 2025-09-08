@@ -151,7 +151,7 @@ body.is-loading *, body.is-loading *:before, body.is-loading *:after {
 }
 
 .authors {
-	font-size: 1.2rem;
+	font-size: 1.4rem;
 	margin: 30px 0;
 	opacity: 0.9;
 }
@@ -168,7 +168,7 @@ body.is-loading *, body.is-loading *:before, body.is-loading *:after {
 }
 
 .affiliations {
-	font-size: 1rem;
+	font-size: 1.4rem;
 	opacity: 0.8;
 	margin-top: 20px;
 }
@@ -192,7 +192,7 @@ body.is-loading *, body.is-loading *:before, body.is-loading *:after {
 	text-decoration: none;
 	border-radius: 50px;
 	font-weight: 500;
-	font-size: 1rem;
+	font-size: 1.2rem;
 	transition: all 0.3s ease;
 	backdrop-filter: blur(10px);
 	border: 1px solid rgba(255, 255, 255, 0.2);
