@@ -1529,16 +1529,18 @@ textarea {
 .conference-badge {
     display: inline-block;
     padding: 8px 18px;
-    font-size: 25px;          /* bigger text */
+    font-size: 24px;
     font-weight: 600;
     letter-spacing: 0.4px;
-    color: white;           /* darker text for contrast */
-    background: linear-gradient(
-        135deg,
-        rgba(111, 66, 193, 0.18),
-        rgba(76, 110, 245, 0.18)
-    );                        /* more transparent */
+    color: white;
+
+    /* Chrome-safe translucent background */
+    background-color: rgba(111, 66, 193, 0.18);
+
     border-radius: 999px;
     border: 1px solid rgba(111, 66, 193, 0.25);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+    /* Force proper rendering in Chrome */
+    -webkit-transform: translateZ(0);
+    will-change: transform;
 }
