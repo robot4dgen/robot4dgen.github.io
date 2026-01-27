@@ -1520,3 +1520,25 @@ textarea {
 	margin-top: 0;
 	padding-top: 0;
 }
+
+.conference {
+    margin-top: 12px;
+    margin-bottom: 18px;
+}
+
+.conference-badge {
+    display: inline-block;
+    padding: 8px 18px;
+    font-size: 25px;          /* bigger text */
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: white;           /* darker text for contrast */
+    background: linear-gradient(
+        135deg,
+        rgba(111, 66, 193, 0.18),
+        rgba(76, 110, 245, 0.18)
+    );                        /* more transparent */
+    border-radius: 999px;
+    border: 1px solid rgba(111, 66, 193, 0.25);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
